@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BaSyx_HelloWorld_Typescript.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
