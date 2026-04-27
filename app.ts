@@ -28,7 +28,7 @@ async function main(): Promise<void> {
     helloAAS.idShort = "HelloWorldAAS";
 
     //Push AAS from TypeScript to BaSyx AAS-Repository and register in AAS-Registry
-    const e1 = await helloAASService.createAas({ shell: helloAAS as AssetAdministrationShell, registerInRegistry: false }); //Problem:With Registry it does not work
+    const e1 = await helloAASService.createAas({ shell: helloAAS as AssetAdministrationShell, registerInRegistry: true }); 
     console.log(e1.success);
 
     //Create SemanticId for Submodel
@@ -41,7 +41,7 @@ async function main(): Promise<void> {
     helloSubmodel.semanticId = ref;
 
     //Create empty Submodel in TypeScript Object Model
-    const e2 = await helloSMService.createSubmodel({ submodel: helloSubmodel as Submodel, registerInRegistry: false }) //Problem:With Registry it does not work
+    const e2 = await helloSMService.createSubmodel({ submodel: helloSubmodel as Submodel, registerInRegistry: true }) 
     console.log(e2.success);
 
     //Get AAS from BaSyx Server and embed new Submodel. Update AAS to Server.
@@ -87,9 +87,6 @@ async function main(): Promise<void> {
     //STOP EXECUTION HERE TO SEE RESULTS
     debugger;
     //REST OF EXAMPLE CODE WILL DELETE EVERYTHING CREATED
-
-    //Delete Property
-    //Problem: Even with "getSubmodelElementByIdShort(id,submodel)" I have no direct access to the parent SMC to delete the Property directly
 
     // Delete Submodel
     const e6 = await helloSMService.deleteSubmodel({ submodelIdentifier: helloSubmodel.id as string, deleteFromRegistry: true });
