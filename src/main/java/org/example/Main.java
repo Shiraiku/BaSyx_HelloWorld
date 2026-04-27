@@ -39,22 +39,12 @@ public class Main {
                 .semanticId(ref)
                 .build();
 
-        //Push AAS from Java to BaSyx AAS-Repository and register in AAS-Registry
-        try{
         helloManager.createAas(helloAAS);
-        }catch(Exception e){ System.out.println(e);} //Problem: Exception in AAS-Registry: 409 obwohl neu
-
-        //Push Submodel from Java to BaSyx Submodel-Repository and register in Submodel-Registry
-        try {
-            helloManager.createSubmodelInAas(helloAAS.getId(), helloSubmodel);
-        }catch(Exception e){ System.out.println(e);} //Problem: Exception in Submodel-Registry: 409 obwohl neu : Es wird danach KEINE Verknpüpfung zwischen AAS und Submodel gemacht!
+        helloManager.createSubmodelInAas(helloAAS.getId(), helloSubmodel);
 
         //Initialize Service Managers
         ConnectedAasService helloAASService = helloManager.getAasService(helloAAS.getId());
         ConnectedSubmodelService helloSMService = helloManager.getSubmodelService(helloSubmodel.getId());
-
-        //Embed Submodel Reference into AAS
-        helloAASService.addSubmodelReference(helloSubmodel.getSemanticId());
 
         //Create new SubmodelElementCollection (SMC) in Java Object Model
         SubmodelElementCollection helloCollection =  new DefaultSubmodelElementCollection.Builder()
@@ -72,7 +62,7 @@ public class Main {
         helloSMService.updateSubmodelElement("helloSMCollection", helloSMC);
 
         //STOP EXECUTION HERE TO SEE RESULTS
-        Integer addBreakpointHere;
+        Integer addBreakpointHere = 42;
         //REST OF EXAMPLE CODE WILL DELETE EVERYTHING CREATED
 
         //Delete the Property
