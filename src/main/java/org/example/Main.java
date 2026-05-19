@@ -4,6 +4,7 @@ import org.eclipse.digitaltwin.aas4j.v3.model.*;
 import org.eclipse.digitaltwin.aas4j.v3.model.impl.*;
 import org.eclipse.digitaltwin.basyx.aasenvironment.client.ConnectedAasManager;
 import org.eclipse.digitaltwin.basyx.aasservice.client.ConnectedAasService;
+import org.eclipse.digitaltwin.basyx.operation.InvokableOperation;
 import org.eclipse.digitaltwin.basyx.submodelservice.client.ConnectedSubmodelService;
 
 import java.util.List;
@@ -55,10 +56,23 @@ public class Main {
         //Add SubmodelElementCollection (SMC) from Java Object to Submodel
         helloSMService.createSubmodelElement(helloCollection);
 
+        //Create Invokable Operation
+        DefaultOperationVariable input_A = new DefaultOperationVariable.Builder().value(new DefaultProperty.Builder().idShort("A").valueType(DataTypeDefXsd.INT).build()).build();
+        DefaultOperationVariable input_B = new DefaultOperationVariable.Builder().value(new DefaultProperty.Builder().idShort("B").valueType(DataTypeDefXsd.INT).build()).build();
+        DefaultOperationVariable result_C = new DefaultOperationVariable.Builder().value(new DefaultProperty.Builder().idShort("C").valueType(DataTypeDefXsd.INT).build()).build();
+
+        Operation helloOperation = new InvokableOperation.Builder()
+                .idShort("pythagorasOperation")
+                .inputVariables(input_A)
+                .inputVariables(input_B)
+                .outputVariables(result_C)
+                .invokable(Main::pythagoras)
+                .build();
+
         //Get Submodel Element from Submodel Service (Submodel Server) and add a Property to the SMC (Update), then re-push it to the Server
         SubmodelElementCollection helloSMC = (SubmodelElementCollection) helloSMService.getSubmodelElement("helloSMCollection");
-        helloSMC.getValue().add(
-                new DefaultProperty.Builder().idShort("helloProperty").valueType(DataTypeDefXsd.STRING).value("h3ll0World!").build());
+        helloSMC.getValue().add(new DefaultProperty.Builder().idShort("helloProperty").valueType(DataTypeDefXsd.STRING).value("h3ll0World!").build());
+        helloSMC.getValue().add(helloOperation);
         helloSMService.updateSubmodelElement("helloSMCollection", helloSMC);
 
         //STOP EXECUTION HERE TO SEE RESULTS
@@ -73,5 +87,27 @@ public class Main {
 
         //Delete whole AAS
         helloManager.deleteAas(helloAAS.getId());
+    }
+
+    //Invokable Operation: Pythagoras
+    private static OperationVariable[] pythagoras(OperationVariable[] inputs) {
+//        Property A = (Property) inputs[0].getValue();
+//        Property B = (Property) inputs[1].getValue();
+//        Property C = (Property) inputs[2].getValue();
+//        Integer iA = Integer.valueOf(A.getValue());
+//        Integer iB = Integer.valueOf(B.getValue());
+//
+//        Integer A_squared = iA * iA;
+//        Integer B_squared = iB * iB;
+//        Integer C_squared = A_squared + B_squared;
+//        Integer C_out = (int) Math.sqrt(C_squared);
+//
+//        C.setValue(C_out.toString());
+//        C.setIdShort("C");
+//
+        Property p = (Property) new DefaultOperationVariable.Builder().value(new DefaultProperty.Builder().idShort("C").valueType(DataTypeDefXsd.INT).build()).build();
+        OperationVariable result = new DefaultOperationVariable.Builder().value(p).build();
+//
+        return new OperationVariable[] { result };
     }
 }
