@@ -91,23 +91,22 @@ public class Main {
 
     //Invokable Operation: Pythagoras
     private static OperationVariable[] pythagoras(OperationVariable[] inputs) {
-//        Property A = (Property) inputs[0].getValue();
-//        Property B = (Property) inputs[1].getValue();
-//        Property C = (Property) inputs[2].getValue();
-//        Integer iA = Integer.valueOf(A.getValue());
-//        Integer iB = Integer.valueOf(B.getValue());
-//
-//        Integer A_squared = iA * iA;
-//        Integer B_squared = iB * iB;
-//        Integer C_squared = A_squared + B_squared;
-//        Integer C_out = (int) Math.sqrt(C_squared);
-//
-//        C.setValue(C_out.toString());
-//        C.setIdShort("C");
-//
-        Property p = (Property) new DefaultOperationVariable.Builder().value(new DefaultProperty.Builder().idShort("C").valueType(DataTypeDefXsd.INT).build()).build();
-        OperationVariable result = new DefaultOperationVariable.Builder().value(p).build();
-//
+        Property A = (Property) inputs[0].getValue();
+        Property B = (Property) inputs[1].getValue();
+        Property C = (Property) inputs[2].getValue();
+        Integer iA = Integer.valueOf(A.getValue());
+        Integer iB = Integer.valueOf(B.getValue());
+
+        Integer A_squared = iA * iA;
+        Integer B_squared = iB * iB;
+        Integer C_squared = A_squared + B_squared;
+        Integer C_out = (int) Math.sqrt(C_squared);
+
+        C.setValue(C_out.toString());
+        C.setIdShort("C");
+
+        OperationVariable result = new DefaultOperationVariable.Builder().value(C).build();
+
         return new OperationVariable[] { result };
     }
 }
