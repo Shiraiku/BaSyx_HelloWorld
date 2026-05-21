@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\heiler\\Documents\\git repositories\\BaSyx_HelloWorld\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0465BE66-33FA-52C5-5B84-00C815D67996}|BaSyx_HelloWorld_Typescript.esproj|c:\\users\\heiler\\documents\\git repositories\\basyx_helloworld\\app.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{0465BE66-33FA-52C5-5B84-00C815D67996}|BaSyx_HelloWorld_Typescript.esproj|solutionrelative:app.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "app.ts",
+              "DocumentMoniker": "C:\\Users\\heiler\\Documents\\git repositories\\BaSyx_HelloWorld\\app.ts",
+              "RelativeDocumentMoniker": "app.ts",
+              "ToolTip": "C:\\Users\\heiler\\Documents\\git repositories\\BaSyx_HelloWorld\\app.ts",
+              "RelativeToolTip": "app.ts",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2026-05-21T09:21:20.022Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

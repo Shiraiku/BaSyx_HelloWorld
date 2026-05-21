@@ -28,8 +28,7 @@ async function main(): Promise<void> {
     helloAAS.idShort = "HelloWorldAAS";
 
     //Push AAS from TypeScript to BaSyx AAS-Repository and register in AAS-Registry
-    const e1 = await helloAASService.createAas({ shell: helloAAS as AssetAdministrationShell, registerInRegistry: true }); 
-    console.log(e1.success);
+    await helloAASService.createAas({ shell: helloAAS as AssetAdministrationShell, registerInRegistry: true }); 
 
     //Create SemanticId for Submodel
     const key = new Key(KeyTypes.Submodel, "http://example.com/aas/helloWorld/submodel");
@@ -41,16 +40,14 @@ async function main(): Promise<void> {
     helloSubmodel.semanticId = ref;
 
     //Create empty Submodel in TypeScript Object Model
-    const e2 = await helloSMService.createSubmodel({ submodel: helloSubmodel as Submodel, registerInRegistry: true }) 
-    console.log(e2.success);
+    await helloSMService.createSubmodel({ submodel: helloSubmodel as Submodel, registerInRegistry: true });
 
     //Get AAS from BaSyx Server and embed new Submodel. Update AAS to Server.
     const helloAAS_apiResult = await helloAASService.getAasById({ aasIdentifier: 'http://example.com/aas/helloWorld' });
     if (helloAAS_apiResult.success) {
         const helloAAS = helloAAS_apiResult.data.shell;
         (helloAAS.submodels ??= []).push(helloSubmodel.semanticId as Reference);
-        const e3 = await helloAASService.updateAas({ shell: helloAAS, updateInRegistry: false });
-        console.log(e3.success);
+        await helloAASService.updateAas({ shell: helloAAS, updateInRegistry: false });
     }
 
     //Create new SubmodelElementCollection (SMC) in TypeScript Object Model
@@ -67,8 +64,7 @@ async function main(): Promise<void> {
 
         //Push SMC to Submodel and update Submodel on Server
         (helloSM.submodelElements ??= []).push(helloCollection as SubmodelElementCollection);
-        const e4 = await helloSMService.updateSubmodel({ submodel: helloSM, updateInRegistry: false }) //Problem:With Registry it does not work
-        console.log(e4.success);
+        await helloSMService.updateSubmodel({ submodel: helloSM, updateInRegistry: false }) //Problem:With Registry it does not work
 
         // Find a SubmodelElement inside a Submodel or SubmodelElement by its idShort
         var helloSMC = getSubmodelElementByIdShort("helloSMCollection", helloSM);
@@ -80,8 +76,7 @@ async function main(): Promise<void> {
 
         //Add a Property to the SMC (Update), then update the whole Submodel to the Server
         ((helloSMC as SubmodelElementCollection).value ??= []).push(helloProperty as Property);
-        const e5 = await helloSMService.updateSubmodel({ submodel: helloSM, updateInRegistry: false }); //Problem:With Registry it does not work
-        console.log(e5.success);
+        await helloSMService.updateSubmodel({ submodel: helloSM, updateInRegistry: false }); //Problem:With Registry it does not work
     }
 
     //STOP EXECUTION HERE TO SEE RESULTS
@@ -89,12 +84,10 @@ async function main(): Promise<void> {
     //REST OF EXAMPLE CODE WILL DELETE EVERYTHING CREATED
 
     // Delete Submodel
-    const e6 = await helloSMService.deleteSubmodel({ submodelIdentifier: helloSubmodel.id as string, deleteFromRegistry: true });
-    console.log(e6.success);
+    await helloSMService.deleteSubmodel({ submodelIdentifier: helloSubmodel.id as string, deleteFromRegistry: true });
 
     // Delete AAS
-    const e7 = await helloAASService.deleteAas({ aasIdentifier: helloAAS.id as string, deleteFromRegistry: true });
-    console.log(e7.success);
+    await helloAASService.deleteAas({ aasIdentifier: helloAAS.id as string, deleteFromRegistry: true });
 
 }
 
