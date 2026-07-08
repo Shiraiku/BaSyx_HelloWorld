@@ -32,27 +32,27 @@
         <dependency>
             <groupId>org.eclipse.digitaltwin.basyx</groupId>
             <artifactId>basyx.aasenvironment-client</artifactId>
-            <version>2.0.0-milestone-04</version>
+            <version>2.0.0-milestone-11</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.digitaltwin.basyx</groupId>
             <artifactId>basyx.aasrepository-client</artifactId>
-            <version>2.0.0-milestone-08</version>
+            <version>2.0.0-milestone-11</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.digitaltwin.basyx</groupId>
             <artifactId>basyx.submodelrepository-client</artifactId>
-            <version>2.0.0-milestone-08</version>
+            <version>2.0.0-milestone-11</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.digitaltwin.basyx</groupId>
             <artifactId>basyx.aasservice-client</artifactId>
-            <version>2.0.0-milestone-08</version>
+            <version>2.0.0-milestone-11</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.digitaltwin.basyx</groupId>
             <artifactId>basyx.submodelservice-client</artifactId>
-            <version>2.0.0-milestone-08</version>
+            <version>2.0.0-milestone-11</version>
         </dependency>
         <dependency>
             <groupId>org.eclipse.digitaltwin.aas4j</groupId>
